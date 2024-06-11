@@ -2,6 +2,7 @@ package com.example.myproject.service;
 
 import java.util.List;
 
+import com.example.myproject.entity.College;
 import com.example.myproject.entity.CollegeDto;
 
 public interface CollegeService {
@@ -18,4 +19,11 @@ public interface CollegeService {
 
 	List<CollegeDto> getAll();
 
+	List<CollegeDto> getBy(String name);
+
+	
+
+	
+
+	
 }

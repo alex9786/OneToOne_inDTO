@@ -36,7 +36,8 @@ public class College {
 	private long contact;
 	
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "college")
-	private Deportments deportments;
-	
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name="fkId")
+//	private Deportments deportments;
+//	
 }

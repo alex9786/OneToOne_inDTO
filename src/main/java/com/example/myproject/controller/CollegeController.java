@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.myproject.entity.College;
 import com.example.myproject.entity.CollegeDto;
 import com.example.myproject.service.CollegeService;
 
@@ -53,6 +55,19 @@ public class CollegeController {
 		return service.getAll();
 	}
 	
+	@GetMapping("/getBy")
+	public List<CollegeDto> getBy(@RequestParam(value="name",required=true) String name) {
+		return service.getBy(name);
+	}
 	
 
+
 }
+
+
+
+
+
+
+
+

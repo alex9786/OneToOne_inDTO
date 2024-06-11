@@ -17,6 +17,7 @@ public class CollegeServiceImp implements CollegeService{
 	@Autowired
 	CollegeRepository collegeRepo;
 
+	//POST Method
 	@Override
 	public CollegeDto postDto(CollegeDto post) {
 		College college = new College();
@@ -28,6 +29,7 @@ public class CollegeServiceImp implements CollegeService{
 		return post;
 	}
 
+	//GET Method
 	@Override
 	public CollegeDto getDto(int id) {
 		
@@ -41,6 +43,7 @@ public class CollegeServiceImp implements CollegeService{
 	return dto;
 	}
 
+	//UPDATE Method
 	@Override
 	public CollegeDto update(CollegeDto dtoUpdate) {
 		College entity= new College();
@@ -52,12 +55,16 @@ public class CollegeServiceImp implements CollegeService{
 		return dtoUpdate;
 	}
 
+	//DELETE Method
 	@Override
 	public String delete(int id) {
 		collegeRepo.deleteById(id);
 		return "delete completed";
 	}
+	
+	/******************************CURD ALL METHODS********************************************/
 
+	// POSTALL Method
 	@Override
 	public List<CollegeDto> postAll(List<CollegeDto> dto) {
 
@@ -70,27 +77,12 @@ public class CollegeServiceImp implements CollegeService{
 			entity.setPlace(dTo.getPlace());
 			entity.setContact(dTo.getContact());
 			entitylist.add(entity);
-			
 		}
-		
-		List<College> saveCollege=collegeRepo.saveAll(entitylist);
-		
-		List<CollegeDto>dtoCollege = new ArrayList<>();
-		
-		for(College college:saveCollege) {
-			
-			CollegeDto resultDto = new CollegeDto();
-			resultDto.setId(college.getId());
-			resultDto.setName(college.getName());
-			resultDto.setPlace(college.getPlace());
-			resultDto.setContact(college.getContact());
-
-			dtoCollege.add(resultDto);
-		}
-		return dtoCollege;
+		 collegeRepo.saveAll(entitylist);
+		 return dto;
 	}
-
 	
+	// GET ALL
 	@Override
 	public List<CollegeDto> getAll() {
 
@@ -110,11 +102,40 @@ public class CollegeServiceImp implements CollegeService{
 		return collegeDto;
 	}
 
+	@Override
+	public List<CollegeDto> getBy(String name) {
+		List<College> college;
+		if (name == null) {
+			college = collegeRepo.findAll();
+		} else {
+			college = collegeRepo.findByName();
+		}
+		List<CollegeDto> collegdto = new ArrayList<>();
+		for (College ent : college) {
+			CollegeDto dto = new CollegeDto();
+			dto.setId(ent.getId());
+			dto.setName(ent.getName());
+			dto.setPlace(ent.getPlace());
+			dto.setContact(ent.getContact());
+			collegdto.add(dto);
+		}
+		return collegdto;
+	}
+	
+	
+
+	
+	
+
+	
+
+	
+	
+	
+	
+	
+	
+	
 }
-
-
-
-
-
 
 

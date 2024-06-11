@@ -28,8 +28,6 @@ public class Deportments {
 	
 	private int placements;
 	
-	@OneToOne
-	@JoinColumn(name = "fkId")
-	private College college;
+	
 	
 }
